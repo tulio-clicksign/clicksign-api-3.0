@@ -1,0 +1,31 @@
+meta {
+  name: Criar Documento por Modelo
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/envelopes/{{envelope_id}}/documents
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "documents",
+      "attributes": {
+        "filename": "",
+        "template": {
+          "key": "",
+          "data": "{}"
+        },
+        "metadata": ""
+      }
+    }
+  }
+}
+
+docs {
+  Adicionar um Documento ao Envelope a partir de um Modelo/Template.
+}

@@ -1,0 +1,28 @@
+meta {
+  name: Criar Documento por Upload
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/envelopes/{{envelope_id}}/documents
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "documents",
+      "attributes": {
+        "filename": "",
+        "content_base64": "",
+        "metadata": ""
+      }
+    }
+  }
+}
+
+docs {
+  Adicionar um Documento ao Envelope a partir do base64 de um arquivo.
+}

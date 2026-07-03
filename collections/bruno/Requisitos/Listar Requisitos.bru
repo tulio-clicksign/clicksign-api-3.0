@@ -1,0 +1,15 @@
+meta {
+  name: Listar Requisitos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/envelopes/{{envelope_id}}/requirements
+  body: none
+  auth: inherit
+}
+
+docs {
+  Listar Requisitos de um Envelope
+}

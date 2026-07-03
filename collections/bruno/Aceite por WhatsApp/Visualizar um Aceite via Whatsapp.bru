@@ -1,0 +1,19 @@
+meta {
+  name: Visualizar um Aceite via Whatsapp
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/acceptance_term/whatsapps/{{acceptance_term_id}}
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~include: 
+}
+
+docs {
+  Visualizar um Aceite via Whatsapp
+}

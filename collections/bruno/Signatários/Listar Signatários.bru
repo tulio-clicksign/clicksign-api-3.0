@@ -1,0 +1,15 @@
+meta {
+  name: Listar Signatários
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/envelopes/{{envelope_id}}/signers
+  body: none
+  auth: inherit
+}
+
+docs {
+  Listar Signatários de um Envelope
+}

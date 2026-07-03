@@ -1,0 +1,19 @@
+meta {
+  name: Listar Pastas
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/folders
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~filter[in_root]: 
+}
+
+docs {
+  Listar Pastas
+}

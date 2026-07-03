@@ -1,0 +1,15 @@
+meta {
+  name: Listar Observadores do Envelope
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/envelopes/{{envelope_id}}/signature_watchers
+  body: none
+  auth: inherit
+}
+
+docs {
+  Listar Observadores de um Envelope
+}

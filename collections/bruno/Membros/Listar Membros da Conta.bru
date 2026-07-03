@@ -1,0 +1,19 @@
+meta {
+  name: Listar Membros da Conta
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/memberships
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~filter[user.id]: 
+}
+
+docs {
+  Listar Membros da Conta
+}

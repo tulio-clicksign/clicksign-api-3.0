@@ -1,0 +1,1799 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2026-07-03T00:00:00.000Z",
+  "__export_source": "clicksign-openapi-generator:v1",
+  "resources": [
+    {
+      "_id": "wrk_clicksign_v3",
+      "_type": "workspace",
+      "parentId": null,
+      "name": "Clicksign API v3 (Envelope)",
+      "description": "Coleção gerada a partir da documentação pública da Clicksign (https://developers.clicksign.com/reference/comece-agora). Autenticação via header Authorization com o Access Token (sem prefixo Bearer). Content-Type padrão: application/vnd.api+json.",
+      "scope": "collection"
+    },
+    {
+      "_id": "env_base_clicksign",
+      "_type": "environment",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Base Environment",
+      "data": {
+        "base_url": "https://sandbox.clicksign.com/api/v3",
+        "access_token": "",
+        "envelope_id": "",
+        "document_id": "",
+        "signer_id": "",
+        "requirement_id": "",
+        "signature_watcher_id": "",
+        "webhook_id": "",
+        "template_id": "",
+        "folder_id": "",
+        "user_id": "",
+        "membership_id": "",
+        "acceptance_term_id": ""
+      },
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false
+    },
+    {
+      "_id": "env_sandbox_clicksign",
+      "_type": "environment",
+      "parentId": "env_base_clicksign",
+      "name": "Sandbox",
+      "data": {
+        "base_url": "https://sandbox.clicksign.com/api/v3"
+      },
+      "metaSortKey": 1,
+      "isPrivate": false
+    },
+    {
+      "_id": "env_prod_clicksign",
+      "_type": "environment",
+      "parentId": "env_base_clicksign",
+      "name": "Produção",
+      "data": {
+        "base_url": "https://app.clicksign.com/api/v3"
+      },
+      "metaSortKey": 2,
+      "isPrivate": false
+    },
+    {
+      "_id": "fld_mcmlvldt",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Envelope",
+      "description": "",
+      "metaSortKey": 1
+    },
+    {
+      "_id": "req_mcmlvldu",
+      "_type": "request",
+      "parentId": "fld_mcmlvldt",
+      "name": "Criar Envelope",
+      "description": "Setup do envelope",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"envelopes\",\n    \"attributes\": {\n      \"name\": \"Envelope de Teste\",\n      \"deadline_at\": \"\",\n      \"locale\": \"pt-BR\",\n      \"auto_close\": true,\n      \"remind_interval\": \"3\",\n      \"block_after_refusal\": false,\n      \"default_subject\": \"\",\n      \"default_message\": \"\",\n      \"deadline_partial_signature_action\": \"closed\",\n      \"name1\": \"\"\n    },\n    \"relationships\": {\n      \"folder\": {\n        \"data\": {\n          \"type\": \"folders\",\n          \"id\": \"\"\n        }\n      }\n    }\n  },\n  \"name\": \"\"\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvldv",
+      "_type": "request",
+      "parentId": "fld_mcmlvldt",
+      "name": "Listar Envelopes",
+      "description": "Listar e consultar envelopes",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "filter[status]",
+          "value": "",
+          "description": "Informe um status caso deseje filtrar: draft, running, closed, canceled",
+          "disabled": true
+        },
+        {
+          "name": "filter[name]",
+          "value": "",
+          "description": "Informe o nome completo do envelope a ser consultado",
+          "disabled": true
+        },
+        {
+          "name": "filter[created]",
+          "value": "",
+          "description": "Informe os intervalos de datas de criação no padrão da especificação",
+          "disabled": true
+        },
+        {
+          "name": "filter[modified]",
+          "value": "",
+          "description": "Informe os intervalos de datas de atualização no padrão da especificação",
+          "disabled": true
+        },
+        {
+          "name": "filter[deadline_at]",
+          "value": "",
+          "description": "Informe os intervalos de datas de deadline conforme [padrão da especificação](https://jsonapi.org/recommendations/#filtering) (ISO 8601 e separadas por vírgula)",
+          "disabled": true
+        },
+        {
+          "name": "sort",
+          "value": "",
+          "description": "Ordene por nome do envelope (name crescente e -name para decrescente)",
+          "disabled": true
+        }
+      ],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvldw",
+      "_type": "request",
+      "parentId": "fld_mcmlvldt",
+      "name": "Ativar e Editar Envelope",
+      "description": "Ativar ou atualizar configurações de um envelope. <br> Para ativar um envelope na plataforma, cada signatário deve possuir pelo menos um critério de autenticação configurado.  Em caso de dúvidas recomendamos a leitura do <Anchor target=\"_blank\" href=\"https://developers.clicksign.com/docs/guia-de-criacao-o-passo-a-passo-padrao\">Guia de criação</Anchor>",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"id\": \"\",\n    \"type\": \"envelopes\",\n    \"attributes\": {\n      \"status\": \"draft\",\n      \"name\": \"\",\n      \"deadline_at\": \"\",\n      \"locale\": \"pt-BR\",\n      \"auto_close\": true,\n      \"remind_interval\": \"1\",\n      \"block_after_refusal\": true,\n      \"default_subject\": \"\",\n      \"default_message\": \"\",\n      \"deadline_partial_signature_action\": \"closed\"\n    },\n    \"relationships\": {\n      \"folder\": {\n        \"data\": {\n          \"type\": \"folders\",\n          \"id\": \"\"\n        }\n      }\n    }\n  },\n  \"name\": \"\"\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvldx",
+      "_type": "request",
+      "parentId": "fld_mcmlvldt",
+      "name": "Detalhes do Envelope",
+      "description": "Visualizar estado atual do envelope",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 4,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvldy",
+      "_type": "request",
+      "parentId": "fld_mcmlvldt",
+      "name": "Excluir Envelope",
+      "description": "Excluir envelopes que estejam com estado em rascunho (draft)",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 5,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvldz",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Documentos",
+      "description": "",
+      "metaSortKey": 2
+    },
+    {
+      "_id": "req_mcmlvle0",
+      "_type": "request",
+      "parentId": "fld_mcmlvldz",
+      "name": "Listar Documentos",
+      "description": "Listar Documentos de um Envelope",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvle1",
+      "_type": "request",
+      "parentId": "fld_mcmlvldz",
+      "name": "Criar Documento por Upload",
+      "description": "Adicionar um Documento ao Envelope a partir do base64 de um arquivo.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"documents\",\n    \"attributes\": {\n      \"filename\": \"\",\n      \"content_base64\": \"\",\n      \"metadata\": \"\"\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvle2",
+      "_type": "request",
+      "parentId": "fld_mcmlvldz",
+      "name": "Criar Documento por Modelo",
+      "description": "Adicionar um Documento ao Envelope a partir de um Modelo/Template.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"documents\",\n    \"attributes\": {\n      \"filename\": \"\",\n      \"template\": {\n        \"key\": \"\",\n        \"data\": \"{}\"\n      },\n      \"metadata\": \"\"\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvle3",
+      "_type": "request",
+      "parentId": "fld_mcmlvldz",
+      "name": "Criar Documento por Duplicar",
+      "description": "Adicionar um Documento ao Envelope a partir de um documento existente.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 4,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"documents\",\n    \"attributes\": {\n      \"filename\": \"\",\n      \"duplicate\": {\n        \"key\": \"\"\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvle4",
+      "_type": "request",
+      "parentId": "fld_mcmlvldz",
+      "name": "Editar Documento",
+      "description": "Cancelar ou Finalizar um Documento.",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents/{{ _.document_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 5,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"id\": \"\",\n    \"type\": \"documents\",\n    \"attributes\": {\n      \"status\": \"canceled\",\n      \"metadata\": \"\"\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvle5",
+      "_type": "request",
+      "parentId": "fld_mcmlvldz",
+      "name": "Detalhes do Documento",
+      "description": "Visualizar estado atual do Documento",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents/{{ _.document_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 6,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvle6",
+      "_type": "request",
+      "parentId": "fld_mcmlvldz",
+      "name": "Excluir Documento",
+      "description": "Excluir Documento que esteja com estado em rascunho (draft)",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents/{{ _.document_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 7,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvle7",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Signatários",
+      "description": "",
+      "metaSortKey": 3
+    },
+    {
+      "_id": "req_mcmlvle8",
+      "_type": "request",
+      "parentId": "fld_mcmlvle7",
+      "name": "Listar Signatários",
+      "description": "Listar Signatários de um Envelope",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/signers",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvle9",
+      "_type": "request",
+      "parentId": "fld_mcmlvle7",
+      "name": "Criar Signatário",
+      "description": "Adicionar um Signatário ao Envelope.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/signers",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"signers\",\n    \"attributes\": {\n      \"name\": \"\",\n      \"email\": \"\",\n      \"phone_number\": \"\",\n      \"birthday\": \"\",\n      \"has_documentation\": true,\n      \"documentation\": \"\",\n      \"refusable\": \"false\",\n      \"group\": 1,\n      \"location_required_enabled\": false,\n      \"communicate_events\": {\n        \"signature_request\": \"email\",\n        \"signature_reminder\": \"email\",\n        \"document_signed\": \"email\"\n      },\n      \"signature_host\": {\n        \"name\": \"\",\n        \"email\": \"\",\n        \"communicate_events\": {\n          \"signature_host_signature_request\": \"none\"\n        }\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlea",
+      "_type": "request",
+      "parentId": "fld_mcmlvle7",
+      "name": "Detalhes do Signatário",
+      "description": "Visualizar estado atual do Signatário.",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/signers/{{ _.signer_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvleb",
+      "_type": "request",
+      "parentId": "fld_mcmlvle7",
+      "name": "Excluir Signatário",
+      "description": "Excluir signatários que não tenha iniciado o processo de assinatura.",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/signers/{{ _.signer_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 4,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvlec",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Requisitos",
+      "description": "",
+      "metaSortKey": 4
+    },
+    {
+      "_id": "req_mcmlvled",
+      "_type": "request",
+      "parentId": "fld_mcmlvlec",
+      "name": "Listar Requisitos",
+      "description": "Listar Requisitos de um Envelope",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/requirements",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlee",
+      "_type": "request",
+      "parentId": "fld_mcmlvlec",
+      "name": "Criar Requisito de Qualificação",
+      "description": "Criar Requisito de Qualificação, relacionando um signatário a um documento.<br>Em caso de falhas consulte a <Anchor target=\"_blank\" href=\"https://developers.clicksign.com/docs/veja-como-funciona-na-pr%C3%A1tica\">documentação teórica informando o passo a passo.</Anchor><br>Ainda ficou com dúvidas? <Anchor target=\"_blank\" href=\"https://www.clicksign.com/suporte\">Entre em contato com o suporte.</Anchor>",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/requirements",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"requirements\",\n    \"attributes\": {\n      \"action\": \"agree\",\n      \"role\": \"sign\"\n    },\n    \"relationships\": {\n      \"document\": {\n        \"data\": {\n          \"type\": \"documents\",\n          \"id\": \"\"\n        }\n      },\n      \"signer\": {\n        \"data\": {\n          \"type\": \"signers\",\n          \"id\": \"\"\n        }\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlef",
+      "_type": "request",
+      "parentId": "fld_mcmlvlec",
+      "name": "Criar Requisito de Autenticação",
+      "description": "Criar Requisito de Autenticação, relacionando um signatário a um documento.<br>Em caso de falhas consulte a <Anchor target=\"_blank\" href=\"https://developers.clicksign.com/docs/veja-como-funciona-na-pr%C3%A1tica\">documentação teórica informando o passo a passo.</Anchor><br>Ainda ficou com dúvidas? <Anchor target=\"_blank\" href=\"https://www.clicksign.com/suporte\">Entre em contato com o suporte.</Anchor>",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/requirements",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"requirements\",\n    \"attributes\": {\n      \"action\": \"provide_evidence\",\n      \"auth\": \"email\"\n    },\n    \"relationships\": {\n      \"document\": {\n        \"data\": {\n          \"type\": \"documents\",\n          \"id\": \"\"\n        }\n      },\n      \"signer\": {\n        \"data\": {\n          \"type\": \"signers\",\n          \"id\": \"\"\n        }\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvleg",
+      "_type": "request",
+      "parentId": "fld_mcmlvlec",
+      "name": "Criar Requisito de Rubrica",
+      "description": "Criar Requisito de Rubrica, relacionando um signatário a um documento.<br>Em caso de falhas consulte a <Anchor target=\"_blank\" href=\"https://developers.clicksign.com/docs/veja-como-funciona-na-pr%C3%A1tica\">documentação teórica informando o passo a passo.</Anchor><br>Ainda ficou com dúvidas? <Anchor target=\"_blank\" href=\"https://www.clicksign.com/suporte\">Entre em contato com o suporte.</Anchor>",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/requirements",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 4,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"requirements\",\n    \"attributes\": {\n      \"action\": \"rubricate\",\n      \"pages\": \"\",\n      \"kind\": \"initials\",\n      \"rubric_field\": \"\"\n    },\n    \"relationships\": {\n      \"document\": {\n        \"data\": {\n          \"type\": \"documents\",\n          \"id\": \"\"\n        }\n      },\n      \"signer\": {\n        \"data\": {\n          \"type\": \"signers\",\n          \"id\": \"\"\n        }\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvleh",
+      "_type": "request",
+      "parentId": "fld_mcmlvlec",
+      "name": "Detalhes do Requisito",
+      "description": "Visualizar estado atual do Requisito.",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/requirements/{{ _.requirement_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 5,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlei",
+      "_type": "request",
+      "parentId": "fld_mcmlvlec",
+      "name": "Excluir Requisito",
+      "description": "Excluir requisitos, caso não tenha iniciado o processo de assinatura.",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/requirements/{{ _.requirement_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 6,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvlej",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Observadores de Assinaturas",
+      "description": "",
+      "metaSortKey": 5
+    },
+    {
+      "_id": "req_mcmlvlek",
+      "_type": "request",
+      "parentId": "fld_mcmlvlej",
+      "name": "Listar Observadores do Envelope",
+      "description": "Listar Observadores de um Envelope",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/signature_watchers",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlel",
+      "_type": "request",
+      "parentId": "fld_mcmlvlej",
+      "name": "Criar Observador da Assinatura",
+      "description": "Criar Observador",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/signature_watchers",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"signature_watchers\",\n    \"attributes\": {\n      \"email\": \"\",\n      \"kind\": \"all_steps\",\n      \"communicate_events\": {\n        \"signature_watcher_document_sent\": \"email\",\n        \"signature_watcher_document_signed\": \"email\",\n        \"signature_watcher_document_deadline\": \"email\",\n        \"signature_watcher_document_canceled\": \"email\",\n        \"signature_watcher_envelope_closed\": \"email\"\n      },\n      \"attach_documents_enabled\": false\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlem",
+      "_type": "request",
+      "parentId": "fld_mcmlvlej",
+      "name": "Excluir Observador",
+      "description": "Excluir um observador",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/signature_watchers/{{ _.signature_watcher_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvlen",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Notificações",
+      "description": "",
+      "metaSortKey": 6
+    },
+    {
+      "_id": "req_mcmlvleo",
+      "_type": "request",
+      "parentId": "fld_mcmlvlen",
+      "name": "Notificar um Signatário",
+      "description": "Notificar um Signatário do Envelope.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/signers/{{ _.signer_id }}/notifications",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"notifications\",\n    \"attributes\": {\n      \"message\": \"null\",\n      \"email_customization\": {\n        \"subject\": \"\",\n        \"head\": \"\",\n        \"greeting\": \"\",\n        \"principal\": \"\",\n        \"button\": \"\",\n        \"final\": \"\",\n        \"align\": \"\",\n        \"show_token\": \"\",\n        \"show_qrcode\": \"\",\n        \"show_details\": \"\"\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlep",
+      "_type": "request",
+      "parentId": "fld_mcmlvlen",
+      "name": "Notificar Signatários do Envelope",
+      "description": "Notificar todos os Signatários de um Envelope.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/notifications",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"notifications\",\n    \"attributes\": {\n      \"message\": \"null\",\n      \"email_customization\": {\n        \"subject\": \"\",\n        \"head\": \"\",\n        \"greeting\": \"\",\n        \"principal\": \"\",\n        \"button\": \"\",\n        \"final\": \"\",\n        \"align\": \"left\",\n        \"show_token\": false,\n        \"show_qrcode\": false,\n        \"show_details\": false\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "fld_mcmlvleq",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Eventos",
+      "description": "",
+      "metaSortKey": 7
+    },
+    {
+      "_id": "req_mcmlvler",
+      "_type": "request",
+      "parentId": "fld_mcmlvleq",
+      "name": "Eventos de um Documento",
+      "description": "Listar eventos de um Documento do Envelope",
+      "method": "GET",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents/{{ _.document_id }}/events",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "filter[name]",
+          "value": "",
+          "description": "Parametro utilizado para filtrar eventos por nome. Informe um dos status listados aqui https://developers.clicksign.com/docs/eventos",
+          "disabled": true
+        }
+      ],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvles",
+      "_type": "request",
+      "parentId": "fld_mcmlvleq",
+      "name": "Criar evento customizado para o documento",
+      "description": "Adicionar um Evento Customizado de Token ao Documento.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents/{{ _.document_id }}/events",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"events\",\n    \"attributes\": {\n      \"name\": \"custom\",\n      \"data\": {\n        \"kind\": \"token_email\",\n        \"occurred_at\": \"\",\n        \"signer_name\": \"\",\n        \"signer_email\": \"\",\n        \"signer_phone_number\": \"\"\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlet",
+      "_type": "request",
+      "parentId": "fld_mcmlvleq",
+      "name": "Criar evento com imagem para o documento",
+      "description": "Adicionar um Evento de Imagem ao Documento.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/documents/{{ _.document_id }}/events",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"events\",\n    \"attributes\": {\n      \"name\": \"add_image\",\n      \"content_base64\": \"\",\n      \"data\": {\n        \"occurred_at\": \"\",\n        \"title\": \"\"\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "fld_mcmlvleu",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Webhooks",
+      "description": "",
+      "metaSortKey": 8
+    },
+    {
+      "_id": "req_mcmlvlev",
+      "_type": "request",
+      "parentId": "fld_mcmlvleu",
+      "name": "Listar Webhooks",
+      "description": "Listar Webhooks",
+      "method": "GET",
+      "url": "{{ _.base_url }}/webhooks",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API (application/vnd.api+json)."
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlew",
+      "_type": "request",
+      "parentId": "fld_mcmlvleu",
+      "name": "Criar Webhook",
+      "description": "Adicionar um Webhook a sua conta.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/webhooks",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"webhooks\",\n    \"attributes\": {\n      \"endpoint\": \"\",\n      \"status\": \"active\",\n      \"events\": [\n        \"\"\n      ]\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlex",
+      "_type": "request",
+      "parentId": "fld_mcmlvleu",
+      "name": "Detalhes do Webhook",
+      "description": "Visualizar Webhook",
+      "method": "GET",
+      "url": "{{ _.base_url }}/webhooks/{{ _.webhook_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvley",
+      "_type": "request",
+      "parentId": "fld_mcmlvleu",
+      "name": "Editar Webhook",
+      "description": "Editar Webhook",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/webhooks/{{ _.webhook_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 4,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"id\": \"\",\n    \"type\": \"webhooks\",\n    \"attributes\": {\n      \"endpoint\": \"\",\n      \"status\": \"active\",\n      \"events\": \"\"\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlez",
+      "_type": "request",
+      "parentId": "fld_mcmlvleu",
+      "name": "Excluir Webhook",
+      "description": "Excluir webhook.",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/webhooks/{{ _.webhook_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 5,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvlf0",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Modelos",
+      "description": "",
+      "metaSortKey": 9
+    },
+    {
+      "_id": "req_mcmlvlf1",
+      "_type": "request",
+      "parentId": "fld_mcmlvlf0",
+      "name": "Listar Modelos",
+      "description": "Lista todos os Modelos de sua conta.",
+      "method": "GET",
+      "url": "{{ _.base_url }}/templates",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlf2",
+      "_type": "request",
+      "parentId": "fld_mcmlvlf0",
+      "name": "Criar Modelo",
+      "description": "Referência para criação de modelos.",
+      "method": "POST",
+      "url": "{{ _.base_url }}/templates",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"templates\",\n    \"attributes\": {\n      \"name\": \"\",\n      \"content_base64\": \"\",\n      \"color\": \"#1474f5\"\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlf3",
+      "_type": "request",
+      "parentId": "fld_mcmlvlf0",
+      "name": "Editar Modelo",
+      "description": "Referência para atualização de modelos.",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/templates/{{ _.template_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"templates\",\n    \"data\": {\n      \"name\": \"\",\n      \"color\": \"#1474f5\"\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlf4",
+      "_type": "request",
+      "parentId": "fld_mcmlvlf0",
+      "name": "Detalhes do Modelo",
+      "description": "Referência para detalhes de um modelo.",
+      "method": "GET",
+      "url": "{{ _.base_url }}/templates/{{ _.template_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 4,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlf5",
+      "_type": "request",
+      "parentId": "fld_mcmlvlf0",
+      "name": "Excluir Modelo",
+      "description": "Referência para exclusão de um modelo.",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/templates/{{ _.template_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 5,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvlf6",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Operações de Requisitos em Massa",
+      "description": "",
+      "metaSortKey": 10
+    },
+    {
+      "_id": "req_mcmlvlf7",
+      "_type": "request",
+      "parentId": "fld_mcmlvlf6",
+      "name": "Criação e Exclusão de Requisitos",
+      "description": "Criação e Exclusão de Requisitos",
+      "method": "POST",
+      "url": "{{ _.base_url }}/envelopes/{{ _.envelope_id }}/bulk_requirements",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"atomic:operations\": [\n    {\n      \"op\": \"add\",\n      \"ref\": {\n        \"type\": \"requirements\",\n        \"id\": \"\"\n      },\n      \"data\": {\n        \"type\": \"requirements\",\n        \"attributes\": {\n          \"action\": \"agree\",\n          \"role\": \"\",\n          \"auth\": \"\",\n          \"pages\": \"\"\n        },\n        \"relationships\": {\n          \"document\": {\n            \"data\": {\n              \"type\": \"documents\",\n              \"id\": \"\"\n            }\n          },\n          \"signer\": {\n            \"data\": {\n              \"type\": \"signers\",\n              \"id\": \"\"\n            }\n          }\n        }\n      }\n    }\n  ]\n}"
+      }
+    },
+    {
+      "_id": "fld_mcmlvlf8",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Pastas",
+      "description": "",
+      "metaSortKey": 11
+    },
+    {
+      "_id": "req_mcmlvlf9",
+      "_type": "request",
+      "parentId": "fld_mcmlvlf8",
+      "name": "Listar Pastas",
+      "description": "Listar Pastas",
+      "method": "GET",
+      "url": "{{ _.base_url }}/folders",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "filter[in_root]",
+          "value": "",
+          "description": "Informe por boleano se deseja listar apenas pastas na raiz de sua estrutura de pastas.",
+          "disabled": true
+        }
+      ],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlfa",
+      "_type": "request",
+      "parentId": "fld_mcmlvlf8",
+      "name": "Criar Pasta",
+      "description": "Criar Pastas",
+      "method": "POST",
+      "url": "{{ _.base_url }}/folders",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"folders\",\n    \"attributes\": {\n      \"name\": \"Pasta 1\"\n    },\n    \"relationships\": {\n      \"folder\": {\n        \"data\": {\n          \"type\": \"folders\",\n          \"id\": \"\"\n        }\n      }\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlfb",
+      "_type": "request",
+      "parentId": "fld_mcmlvlf8",
+      "name": "Detalhes de uma Pasta",
+      "description": "Listar subpastas de uma pasta",
+      "method": "GET",
+      "url": "{{ _.base_url }}/folders/{{ _.folder_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvlfc",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Termo Assinatura Automática",
+      "description": "",
+      "metaSortKey": 12
+    },
+    {
+      "_id": "req_mcmlvlfd",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfc",
+      "name": "Criar termo de assinatura automática",
+      "description": "Criar um termo de assinatura automática para um determinado signatário",
+      "method": "POST",
+      "url": "{{ _.base_url }}/auto_signature/terms",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-Type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"auto_signature_terms\",\n    \"attributes\": {\n      \"signer\": {\n        \"name\": \"Signer Name\",\n        \"email\": \"signer@example.com\",\n        \"documentation\": \"123.456.789-10\",\n        \"birthday\": \"1990-01-01\"\n      },\n      \"api_email\": \"api@example.com\",\n      \"admin_email\": \"admin@example.com\"\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "fld_mcmlvlfe",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Usuários",
+      "description": "",
+      "metaSortKey": 13
+    },
+    {
+      "_id": "req_mcmlvlff",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfe",
+      "name": "Listar Usuários",
+      "description": "Listar e consultar usuários",
+      "method": "GET",
+      "url": "{{ _.base_url }}/users",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "filter[email]",
+          "value": "",
+          "description": "Informe um email caso deseje filtrar",
+          "disabled": true
+        }
+      ],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlfg",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfe",
+      "name": "Criar Usuário",
+      "description": "Cadastrar um novo usuário",
+      "method": "POST",
+      "url": "{{ _.base_url }}/users",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"Usuário Teste\",\n      \"email\": \"teste@example.com\",\n      \"phone_number\": \"11966666666\"\n    },\n    \"type\": \"users\"\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlfh",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfe",
+      "name": "Detalhes do Usuário",
+      "description": "Consultar detalhes do usuário",
+      "method": "GET",
+      "url": "{{ _.base_url }}/users/{{ _.user_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvlfi",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Membros",
+      "description": "",
+      "metaSortKey": 14
+    },
+    {
+      "_id": "req_mcmlvlfj",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfi",
+      "name": "Listar Membros da Conta",
+      "description": "Listar Membros da Conta",
+      "method": "GET",
+      "url": "{{ _.base_url }}/memberships",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "filter[user.id]",
+          "value": "",
+          "description": "Identificador do usuário",
+          "disabled": true
+        }
+      ],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlfk",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfi",
+      "name": "Criar Membro",
+      "description": "Criar Membro",
+      "method": "POST",
+      "url": "{{ _.base_url }}/memberships",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"attributes\": {\n      \"role\": \"global\",\n      \"consumption_accessible\": false,\n      \"tracking_accessible\": false,\n      \"folder_management_accessible\": \"true\"\n    },\n    \"relationships\": {\n      \"user\": {\n        \"data\": {\n          \"id\": \"\",\n          \"type\": \"users\"\n        }\n      }\n    },\n    \"type\": \"memberships\"\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlfl",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfi",
+      "name": "Editar Membro",
+      "description": "Editar Membro",
+      "method": "PUT",
+      "url": "{{ _.base_url }}/memberships/{{ _.membership_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"attributes\": {\n      \"role\": \"global\",\n      \"consumption_accessible\": false,\n      \"tracking_accessible\": false,\n      \"folder_management_accessible\": \"true\"\n    },\n    \"id\": \"\",\n    \"type\": \"memberships\"\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlfm",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfi",
+      "name": "Deletar Membro",
+      "description": "Deletar Membro",
+      "method": "DELETE",
+      "url": "{{ _.base_url }}/memberships/{{ _.membership_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 4,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "fld_mcmlvlfn",
+      "_type": "request_group",
+      "parentId": "wrk_clicksign_v3",
+      "name": "Aceite por WhatsApp",
+      "description": "",
+      "metaSortKey": 15
+    },
+    {
+      "_id": "req_mcmlvlfo",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfn",
+      "name": "Listar Aceites via Whastapp",
+      "description": "Listar Aceites via Whastapp",
+      "method": "GET",
+      "url": "{{ _.base_url }}/acceptance_term/whatsapps",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "filter[status]",
+          "value": "",
+          "description": "Informe o status a ser filtrado",
+          "disabled": true
+        },
+        {
+          "name": "include",
+          "value": "",
+          "description": "Informe os relacionamentos que deseja incluir na resposta.",
+          "disabled": true
+        }
+      ],
+      "metaSortKey": 1,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlfp",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfn",
+      "name": "Criar um Aceite via Whatsapp",
+      "description": "Criar um Aceite via Whatsapp",
+      "method": "POST",
+      "url": "{{ _.base_url }}/acceptance_term/whatsapps",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta.\n\n"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API"
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 2,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"type\": \"acceptance_term_whatsapps\",\n    \"attributes\": {\n      \"title\": \"\",\n      \"sender_name_option\": \"user_name\",\n      \"message\": \"\",\n      \"signer_phone\": \"\",\n      \"signer_name\": \"\"\n    }\n  }\n}"
+      }
+    },
+    {
+      "_id": "req_mcmlvlfq",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfn",
+      "name": "Visualizar um Aceite via Whatsapp",
+      "description": "Visualizar um Aceite via Whatsapp",
+      "method": "GET",
+      "url": "{{ _.base_url }}/acceptance_term/whatsapps/{{ _.acceptance_term_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "application/vnd.api+json",
+          "description": "Content-type padrão para todas requisições JSON:API application/vnd.api+json"
+        }
+      ],
+      "parameters": [
+        {
+          "name": "include",
+          "value": "",
+          "description": "Informe os relacionamentos que deseja incluir na resposta.",
+          "disabled": true
+        }
+      ],
+      "metaSortKey": 3,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {}
+    },
+    {
+      "_id": "req_mcmlvlfr",
+      "_type": "request",
+      "parentId": "fld_mcmlvlfn",
+      "name": "Editar um Aceite via Whatsapp",
+      "description": "Editar um Aceite via Whatsapp",
+      "method": "PATCH",
+      "url": "{{ _.base_url }}/acceptance_term/whatsapps/{{ _.acceptance_term_id }}",
+      "headers": [
+        {
+          "name": "Authorization",
+          "value": "{{ _.access_token }}",
+          "description": "Access Token gerado pelo gestor da conta"
+        },
+        {
+          "name": "Content-type",
+          "value": "",
+          "description": "Content-type padrão para todas requisições JSON:API (application/vnd.api+json)."
+        }
+      ],
+      "parameters": [],
+      "metaSortKey": 4,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "body": {
+        "mimeType": "application/vnd.api+json",
+        "text": "{\n  \"data\": {\n    \"id\": \"\",\n    \"type\": \"acceptance_term_whatsapps\",\n    \"attributes\": {\n      \"status\": \"canceled\"\n    }\n  }\n}"
+      }
+    }
+  ]
+}

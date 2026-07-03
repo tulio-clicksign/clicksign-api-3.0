@@ -1,0 +1,2374 @@
+{
+  "info": {
+    "_postman_id": "clicksign-api-v3-envelope",
+    "name": "Clicksign API v3 (Envelope)",
+    "description": "Coleção gerada a partir da documentação pública da Clicksign (https://developers.clicksign.com/reference/comece-agora). Autenticação via header Authorization com o Access Token (sem prefixo Bearer). Content-Type padrão: application/vnd.api+json.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Envelope",
+      "item": [
+        {
+          "name": "Criar Envelope",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes"
+              ],
+              "query": []
+            },
+            "description": "Setup do envelope",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"envelopes\",\n    \"attributes\": {\n      \"name\": \"Envelope de Teste\",\n      \"deadline_at\": \"\",\n      \"locale\": \"pt-BR\",\n      \"auto_close\": true,\n      \"remind_interval\": \"3\",\n      \"block_after_refusal\": false,\n      \"default_subject\": \"\",\n      \"default_message\": \"\",\n      \"deadline_partial_signature_action\": \"closed\",\n      \"name1\": \"\"\n    },\n    \"relationships\": {\n      \"folder\": {\n        \"data\": {\n          \"type\": \"folders\",\n          \"id\": \"\"\n        }\n      }\n    }\n  },\n  \"name\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Listar Envelopes",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes?filter[status]=&filter[name]=&filter[created]=&filter[modified]=&filter[deadline_at]=&sort=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes"
+              ],
+              "query": [
+                {
+                  "key": "filter[status]",
+                  "value": "",
+                  "description": "Informe um status caso deseje filtrar: draft, running, closed, canceled",
+                  "disabled": true
+                },
+                {
+                  "key": "filter[name]",
+                  "value": "",
+                  "description": "Informe o nome completo do envelope a ser consultado",
+                  "disabled": true
+                },
+                {
+                  "key": "filter[created]",
+                  "value": "",
+                  "description": "Informe os intervalos de datas de criação no padrão da especificação",
+                  "disabled": true
+                },
+                {
+                  "key": "filter[modified]",
+                  "value": "",
+                  "description": "Informe os intervalos de datas de atualização no padrão da especificação",
+                  "disabled": true
+                },
+                {
+                  "key": "filter[deadline_at]",
+                  "value": "",
+                  "description": "Informe os intervalos de datas de deadline conforme [padrão da especificação](https://jsonapi.org/recommendations/#filtering) (ISO 8601 e separadas por vírgula)",
+                  "disabled": true
+                },
+                {
+                  "key": "sort",
+                  "value": "",
+                  "description": "Ordene por nome do envelope (name crescente e -name para decrescente)",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Listar e consultar envelopes"
+          },
+          "response": []
+        },
+        {
+          "name": "Ativar e Editar Envelope",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}"
+              ],
+              "query": []
+            },
+            "description": "Ativar ou atualizar configurações de um envelope. <br> Para ativar um envelope na plataforma, cada signatário deve possuir pelo menos um critério de autenticação configurado.  Em caso de dúvidas recomendamos a leitura do <Anchor target=\"_blank\" href=\"https://developers.clicksign.com/docs/guia-de-criacao-o-passo-a-passo-padrao\">Guia de criação</Anchor>",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"\",\n    \"type\": \"envelopes\",\n    \"attributes\": {\n      \"status\": \"draft\",\n      \"name\": \"\",\n      \"deadline_at\": \"\",\n      \"locale\": \"pt-BR\",\n      \"auto_close\": true,\n      \"remind_interval\": \"1\",\n      \"block_after_refusal\": true,\n      \"default_subject\": \"\",\n      \"default_message\": \"\",\n      \"deadline_partial_signature_action\": \"closed\"\n    },\n    \"relationships\": {\n      \"folder\": {\n        \"data\": {\n          \"type\": \"folders\",\n          \"id\": \"\"\n        }\n      }\n    }\n  },\n  \"name\": \"\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes do Envelope",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}"
+              ],
+              "query": []
+            },
+            "description": "Visualizar estado atual do envelope"
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Envelope",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}"
+              ],
+              "query": []
+            },
+            "description": "Excluir envelopes que estejam com estado em rascunho (draft)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Documentos",
+      "item": [
+        {
+          "name": "Listar Documentos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents"
+              ],
+              "query": []
+            },
+            "description": "Listar Documentos de um Envelope"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Documento por Upload",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents"
+              ],
+              "query": []
+            },
+            "description": "Adicionar um Documento ao Envelope a partir do base64 de um arquivo.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"documents\",\n    \"attributes\": {\n      \"filename\": \"\",\n      \"content_base64\": \"\",\n      \"metadata\": \"\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Documento por Modelo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents"
+              ],
+              "query": []
+            },
+            "description": "Adicionar um Documento ao Envelope a partir de um Modelo/Template.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"documents\",\n    \"attributes\": {\n      \"filename\": \"\",\n      \"template\": {\n        \"key\": \"\",\n        \"data\": \"{}\"\n      },\n      \"metadata\": \"\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Documento por Duplicar",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents"
+              ],
+              "query": []
+            },
+            "description": "Adicionar um Documento ao Envelope a partir de um documento existente.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"documents\",\n    \"attributes\": {\n      \"filename\": \"\",\n      \"duplicate\": {\n        \"key\": \"\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Documento",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents",
+                "{{document_id}}"
+              ],
+              "query": []
+            },
+            "description": "Cancelar ou Finalizar um Documento.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"\",\n    \"type\": \"documents\",\n    \"attributes\": {\n      \"status\": \"canceled\",\n      \"metadata\": \"\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes do Documento",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents",
+                "{{document_id}}"
+              ],
+              "query": []
+            },
+            "description": "Visualizar estado atual do Documento"
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Documento",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents",
+                "{{document_id}}"
+              ],
+              "query": []
+            },
+            "description": "Excluir Documento que esteja com estado em rascunho (draft)"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Signatários",
+      "item": [
+        {
+          "name": "Listar Signatários",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/signers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "signers"
+              ],
+              "query": []
+            },
+            "description": "Listar Signatários de um Envelope"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Signatário",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/signers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "signers"
+              ],
+              "query": []
+            },
+            "description": "Adicionar um Signatário ao Envelope.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"signers\",\n    \"attributes\": {\n      \"name\": \"\",\n      \"email\": \"\",\n      \"phone_number\": \"\",\n      \"birthday\": \"\",\n      \"has_documentation\": true,\n      \"documentation\": \"\",\n      \"refusable\": \"false\",\n      \"group\": 1,\n      \"location_required_enabled\": false,\n      \"communicate_events\": {\n        \"signature_request\": \"email\",\n        \"signature_reminder\": \"email\",\n        \"document_signed\": \"email\"\n      },\n      \"signature_host\": {\n        \"name\": \"\",\n        \"email\": \"\",\n        \"communicate_events\": {\n          \"signature_host_signature_request\": \"none\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes do Signatário",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/signers/{{signer_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "signers",
+                "{{signer_id}}"
+              ],
+              "query": []
+            },
+            "description": "Visualizar estado atual do Signatário."
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Signatário",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/signers/{{signer_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "signers",
+                "{{signer_id}}"
+              ],
+              "query": []
+            },
+            "description": "Excluir signatários que não tenha iniciado o processo de assinatura."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Requisitos",
+      "item": [
+        {
+          "name": "Listar Requisitos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/requirements",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "requirements"
+              ],
+              "query": []
+            },
+            "description": "Listar Requisitos de um Envelope"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Requisito de Qualificação",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/requirements",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "requirements"
+              ],
+              "query": []
+            },
+            "description": "Criar Requisito de Qualificação, relacionando um signatário a um documento.<br>Em caso de falhas consulte a <Anchor target=\"_blank\" href=\"https://developers.clicksign.com/docs/veja-como-funciona-na-pr%C3%A1tica\">documentação teórica informando o passo a passo.</Anchor><br>Ainda ficou com dúvidas? <Anchor target=\"_blank\" href=\"https://www.clicksign.com/suporte\">Entre em contato com o suporte.</Anchor>",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"requirements\",\n    \"attributes\": {\n      \"action\": \"agree\",\n      \"role\": \"sign\"\n    },\n    \"relationships\": {\n      \"document\": {\n        \"data\": {\n          \"type\": \"documents\",\n          \"id\": \"\"\n        }\n      },\n      \"signer\": {\n        \"data\": {\n          \"type\": \"signers\",\n          \"id\": \"\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Requisito de Autenticação",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/requirements",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "requirements"
+              ],
+              "query": []
+            },
+            "description": "Criar Requisito de Autenticação, relacionando um signatário a um documento.<br>Em caso de falhas consulte a <Anchor target=\"_blank\" href=\"https://developers.clicksign.com/docs/veja-como-funciona-na-pr%C3%A1tica\">documentação teórica informando o passo a passo.</Anchor><br>Ainda ficou com dúvidas? <Anchor target=\"_blank\" href=\"https://www.clicksign.com/suporte\">Entre em contato com o suporte.</Anchor>",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"requirements\",\n    \"attributes\": {\n      \"action\": \"provide_evidence\",\n      \"auth\": \"email\"\n    },\n    \"relationships\": {\n      \"document\": {\n        \"data\": {\n          \"type\": \"documents\",\n          \"id\": \"\"\n        }\n      },\n      \"signer\": {\n        \"data\": {\n          \"type\": \"signers\",\n          \"id\": \"\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Requisito de Rubrica",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/requirements",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "requirements"
+              ],
+              "query": []
+            },
+            "description": "Criar Requisito de Rubrica, relacionando um signatário a um documento.<br>Em caso de falhas consulte a <Anchor target=\"_blank\" href=\"https://developers.clicksign.com/docs/veja-como-funciona-na-pr%C3%A1tica\">documentação teórica informando o passo a passo.</Anchor><br>Ainda ficou com dúvidas? <Anchor target=\"_blank\" href=\"https://www.clicksign.com/suporte\">Entre em contato com o suporte.</Anchor>",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"requirements\",\n    \"attributes\": {\n      \"action\": \"rubricate\",\n      \"pages\": \"\",\n      \"kind\": \"initials\",\n      \"rubric_field\": \"\"\n    },\n    \"relationships\": {\n      \"document\": {\n        \"data\": {\n          \"type\": \"documents\",\n          \"id\": \"\"\n        }\n      },\n      \"signer\": {\n        \"data\": {\n          \"type\": \"signers\",\n          \"id\": \"\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes do Requisito",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/requirements/{{requirement_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "requirements",
+                "{{requirement_id}}"
+              ],
+              "query": []
+            },
+            "description": "Visualizar estado atual do Requisito."
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Requisito",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/requirements/{{requirement_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "requirements",
+                "{{requirement_id}}"
+              ],
+              "query": []
+            },
+            "description": "Excluir requisitos, caso não tenha iniciado o processo de assinatura."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Observadores de Assinaturas",
+      "item": [
+        {
+          "name": "Listar Observadores do Envelope",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/signature_watchers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "signature_watchers"
+              ],
+              "query": []
+            },
+            "description": "Listar Observadores de um Envelope"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Observador da Assinatura",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/signature_watchers",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "signature_watchers"
+              ],
+              "query": []
+            },
+            "description": "Criar Observador",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"signature_watchers\",\n    \"attributes\": {\n      \"email\": \"\",\n      \"kind\": \"all_steps\",\n      \"communicate_events\": {\n        \"signature_watcher_document_sent\": \"email\",\n        \"signature_watcher_document_signed\": \"email\",\n        \"signature_watcher_document_deadline\": \"email\",\n        \"signature_watcher_document_canceled\": \"email\",\n        \"signature_watcher_envelope_closed\": \"email\"\n      },\n      \"attach_documents_enabled\": false\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Observador",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/signature_watchers/{{signature_watcher_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "signature_watchers",
+                "{{signature_watcher_id}}"
+              ],
+              "query": []
+            },
+            "description": "Excluir um observador"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Notificações",
+      "item": [
+        {
+          "name": "Notificar um Signatário",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/signers/{{signer_id}}/notifications",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "signers",
+                "{{signer_id}}",
+                "notifications"
+              ],
+              "query": []
+            },
+            "description": "Notificar um Signatário do Envelope.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"notifications\",\n    \"attributes\": {\n      \"message\": \"null\",\n      \"email_customization\": {\n        \"subject\": \"\",\n        \"head\": \"\",\n        \"greeting\": \"\",\n        \"principal\": \"\",\n        \"button\": \"\",\n        \"final\": \"\",\n        \"align\": \"\",\n        \"show_token\": \"\",\n        \"show_qrcode\": \"\",\n        \"show_details\": \"\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Notificar Signatários do Envelope",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/notifications",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "notifications"
+              ],
+              "query": []
+            },
+            "description": "Notificar todos os Signatários de um Envelope.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"notifications\",\n    \"attributes\": {\n      \"message\": \"null\",\n      \"email_customization\": {\n        \"subject\": \"\",\n        \"head\": \"\",\n        \"greeting\": \"\",\n        \"principal\": \"\",\n        \"button\": \"\",\n        \"final\": \"\",\n        \"align\": \"left\",\n        \"show_token\": false,\n        \"show_qrcode\": false,\n        \"show_details\": false\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Eventos",
+      "item": [
+        {
+          "name": "Eventos de um Documento",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}/events?filter[name]=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents",
+                "{{document_id}}",
+                "events"
+              ],
+              "query": [
+                {
+                  "key": "filter[name]",
+                  "value": "",
+                  "description": "Parametro utilizado para filtrar eventos por nome. Informe um dos status listados aqui https://developers.clicksign.com/docs/eventos",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Listar eventos de um Documento do Envelope"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar evento customizado para o documento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}/events",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents",
+                "{{document_id}}",
+                "events"
+              ],
+              "query": []
+            },
+            "description": "Adicionar um Evento Customizado de Token ao Documento.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"events\",\n    \"attributes\": {\n      \"name\": \"custom\",\n      \"data\": {\n        \"kind\": \"token_email\",\n        \"occurred_at\": \"\",\n        \"signer_name\": \"\",\n        \"signer_email\": \"\",\n        \"signer_phone_number\": \"\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Criar evento com imagem para o documento",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}/events",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "documents",
+                "{{document_id}}",
+                "events"
+              ],
+              "query": []
+            },
+            "description": "Adicionar um Evento de Imagem ao Documento.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"events\",\n    \"attributes\": {\n      \"name\": \"add_image\",\n      \"content_base64\": \"\",\n      \"data\": {\n        \"occurred_at\": \"\",\n        \"title\": \"\"\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "Listar Webhooks",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API (application/vnd.api+json).",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/webhooks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "webhooks"
+              ],
+              "query": []
+            },
+            "description": "Listar Webhooks"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Webhook",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/webhooks",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "webhooks"
+              ],
+              "query": []
+            },
+            "description": "Adicionar um Webhook a sua conta.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"webhooks\",\n    \"attributes\": {\n      \"endpoint\": \"\",\n      \"status\": \"active\",\n      \"events\": [\n        \"\"\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes do Webhook",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/webhooks/{{webhook_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "webhooks",
+                "{{webhook_id}}"
+              ],
+              "query": []
+            },
+            "description": "Visualizar Webhook"
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Webhook",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/webhooks/{{webhook_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "webhooks",
+                "{{webhook_id}}"
+              ],
+              "query": []
+            },
+            "description": "Editar Webhook",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"\",\n    \"type\": \"webhooks\",\n    \"attributes\": {\n      \"endpoint\": \"\",\n      \"status\": \"active\",\n      \"events\": \"\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Webhook",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/webhooks/{{webhook_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "webhooks",
+                "{{webhook_id}}"
+              ],
+              "query": []
+            },
+            "description": "Excluir webhook."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Modelos",
+      "item": [
+        {
+          "name": "Listar Modelos",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/templates",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "templates"
+              ],
+              "query": []
+            },
+            "description": "Lista todos os Modelos de sua conta."
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Modelo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/templates",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "templates"
+              ],
+              "query": []
+            },
+            "description": "Referência para criação de modelos.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"templates\",\n    \"attributes\": {\n      \"name\": \"\",\n      \"content_base64\": \"\",\n      \"color\": \"#1474f5\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Modelo",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/templates/{{template_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "templates",
+                "{{template_id}}"
+              ],
+              "query": []
+            },
+            "description": "Referência para atualização de modelos.",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"templates\",\n    \"data\": {\n      \"name\": \"\",\n      \"color\": \"#1474f5\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes do Modelo",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/templates/{{template_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "templates",
+                "{{template_id}}"
+              ],
+              "query": []
+            },
+            "description": "Referência para detalhes de um modelo."
+          },
+          "response": []
+        },
+        {
+          "name": "Excluir Modelo",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/templates/{{template_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "templates",
+                "{{template_id}}"
+              ],
+              "query": []
+            },
+            "description": "Referência para exclusão de um modelo."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Operações de Requisitos em Massa",
+      "item": [
+        {
+          "name": "Criação e Exclusão de Requisitos",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/envelopes/{{envelope_id}}/bulk_requirements",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "envelopes",
+                "{{envelope_id}}",
+                "bulk_requirements"
+              ],
+              "query": []
+            },
+            "description": "Criação e Exclusão de Requisitos",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"atomic:operations\": [\n    {\n      \"op\": \"add\",\n      \"ref\": {\n        \"type\": \"requirements\",\n        \"id\": \"\"\n      },\n      \"data\": {\n        \"type\": \"requirements\",\n        \"attributes\": {\n          \"action\": \"agree\",\n          \"role\": \"\",\n          \"auth\": \"\",\n          \"pages\": \"\"\n        },\n        \"relationships\": {\n          \"document\": {\n            \"data\": {\n              \"type\": \"documents\",\n              \"id\": \"\"\n            }\n          },\n          \"signer\": {\n            \"data\": {\n              \"type\": \"signers\",\n              \"id\": \"\"\n            }\n          }\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pastas",
+      "item": [
+        {
+          "name": "Listar Pastas",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/folders?filter[in_root]=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "folders"
+              ],
+              "query": [
+                {
+                  "key": "filter[in_root]",
+                  "value": "",
+                  "description": "Informe por boleano se deseja listar apenas pastas na raiz de sua estrutura de pastas.",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Listar Pastas"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Pasta",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/folders",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "folders"
+              ],
+              "query": []
+            },
+            "description": "Criar Pastas",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"folders\",\n    \"attributes\": {\n      \"name\": \"Pasta 1\"\n    },\n    \"relationships\": {\n      \"folder\": {\n        \"data\": {\n          \"type\": \"folders\",\n          \"id\": \"\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes de uma Pasta",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/folders/{{folder_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "folders",
+                "{{folder_id}}"
+              ],
+              "query": []
+            },
+            "description": "Listar subpastas de uma pasta"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Termo Assinatura Automática",
+      "item": [
+        {
+          "name": "Criar termo de assinatura automática",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/auto_signature/terms",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "auto_signature",
+                "terms"
+              ],
+              "query": []
+            },
+            "description": "Criar um termo de assinatura automática para um determinado signatário",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"auto_signature_terms\",\n    \"attributes\": {\n      \"signer\": {\n        \"name\": \"Signer Name\",\n        \"email\": \"signer@example.com\",\n        \"documentation\": \"123.456.789-10\",\n        \"birthday\": \"1990-01-01\"\n      },\n      \"api_email\": \"api@example.com\",\n      \"admin_email\": \"admin@example.com\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Usuários",
+      "item": [
+        {
+          "name": "Listar Usuários",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users?filter[email]=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": [
+                {
+                  "key": "filter[email]",
+                  "value": "",
+                  "description": "Informe um email caso deseje filtrar",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Listar e consultar usuários"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Usuário",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users"
+              ],
+              "query": []
+            },
+            "description": "Cadastrar um novo usuário",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"name\": \"Usuário Teste\",\n      \"email\": \"teste@example.com\",\n      \"phone_number\": \"11966666666\"\n    },\n    \"type\": \"users\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Detalhes do Usuário",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/users/{{user_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "users",
+                "{{user_id}}"
+              ],
+              "query": []
+            },
+            "description": "Consultar detalhes do usuário"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Membros",
+      "item": [
+        {
+          "name": "Listar Membros da Conta",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/memberships?filter[user.id]=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "memberships"
+              ],
+              "query": [
+                {
+                  "key": "filter[user.id]",
+                  "value": "",
+                  "description": "Identificador do usuário",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Listar Membros da Conta"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar Membro",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/memberships",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "memberships"
+              ],
+              "query": []
+            },
+            "description": "Criar Membro",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"role\": \"global\",\n      \"consumption_accessible\": false,\n      \"tracking_accessible\": false,\n      \"folder_management_accessible\": \"true\"\n    },\n    \"relationships\": {\n      \"user\": {\n        \"data\": {\n          \"id\": \"\",\n          \"type\": \"users\"\n        }\n      }\n    },\n    \"type\": \"memberships\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Editar Membro",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/memberships/{{membership_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "memberships",
+                "{{membership_id}}"
+              ],
+              "query": []
+            },
+            "description": "Editar Membro",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"attributes\": {\n      \"role\": \"global\",\n      \"consumption_accessible\": false,\n      \"tracking_accessible\": false,\n      \"folder_management_accessible\": \"true\"\n    },\n    \"id\": \"\",\n    \"type\": \"memberships\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Deletar Membro",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/memberships/{{membership_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "memberships",
+                "{{membership_id}}"
+              ],
+              "query": []
+            },
+            "description": "Deletar Membro"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Aceite por WhatsApp",
+      "item": [
+        {
+          "name": "Listar Aceites via Whastapp",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/acceptance_term/whatsapps?filter[status]=&include=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "acceptance_term",
+                "whatsapps"
+              ],
+              "query": [
+                {
+                  "key": "filter[status]",
+                  "value": "",
+                  "description": "Informe o status a ser filtrado",
+                  "disabled": true
+                },
+                {
+                  "key": "include",
+                  "value": "",
+                  "description": "Informe os relacionamentos que deseja incluir na resposta.",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Listar Aceites via Whastapp"
+          },
+          "response": []
+        },
+        {
+          "name": "Criar um Aceite via Whatsapp",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta.\n\n",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/acceptance_term/whatsapps",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "acceptance_term",
+                "whatsapps"
+              ],
+              "query": []
+            },
+            "description": "Criar um Aceite via Whatsapp",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"acceptance_term_whatsapps\",\n    \"attributes\": {\n      \"title\": \"\",\n      \"sender_name_option\": \"user_name\",\n      \"message\": \"\",\n      \"signer_phone\": \"\",\n      \"signer_name\": \"\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Visualizar um Aceite via Whatsapp",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "application/vnd.api+json",
+                "description": "Content-type padrão para todas requisições JSON:API application/vnd.api+json",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/acceptance_term/whatsapps/{{acceptance_term_id}}?include=",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "acceptance_term",
+                "whatsapps",
+                "{{acceptance_term_id}}"
+              ],
+              "query": [
+                {
+                  "key": "include",
+                  "value": "",
+                  "description": "Informe os relacionamentos que deseja incluir na resposta.",
+                  "disabled": true
+                }
+              ]
+            },
+            "description": "Visualizar um Aceite via Whatsapp"
+          },
+          "response": []
+        },
+        {
+          "name": "Editar um Aceite via Whatsapp",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "{{access_token}}",
+                "description": "Access Token gerado pelo gestor da conta",
+                "type": "text"
+              },
+              {
+                "key": "Content-type",
+                "value": "",
+                "description": "Content-type padrão para todas requisições JSON:API (application/vnd.api+json).",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/acceptance_term/whatsapps/{{acceptance_term_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "acceptance_term",
+                "whatsapps",
+                "{{acceptance_term_id}}"
+              ],
+              "query": []
+            },
+            "description": "Editar um Aceite via Whatsapp",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"\",\n    \"type\": \"acceptance_term_whatsapps\",\n    \"attributes\": {\n      \"status\": \"canceled\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{access_token}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://sandbox.clicksign.com/api/v3",
+      "type": "string"
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "envelope_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "document_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "signer_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "requirement_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "signature_watcher_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "webhook_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "template_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "folder_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "membership_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "acceptance_term_id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

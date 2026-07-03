@@ -1,0 +1,37 @@
+meta {
+  name: Criar Membro
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/memberships
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "attributes": {
+        "role": "global",
+        "consumption_accessible": false,
+        "tracking_accessible": false,
+        "folder_management_accessible": "true"
+      },
+      "relationships": {
+        "user": {
+          "data": {
+            "id": "",
+            "type": "users"
+          }
+        }
+      },
+      "type": "memberships"
+    }
+  }
+}
+
+docs {
+  Criar Membro
+}

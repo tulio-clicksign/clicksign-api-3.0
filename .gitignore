@@ -1,0 +1,4 @@
+.gstack/
+.claude/
+build/out/
+node_modules/

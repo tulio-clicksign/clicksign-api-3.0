@@ -1,0 +1,44 @@
+meta {
+  name: Criar Envelope
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/envelopes
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "envelopes",
+      "attributes": {
+        "name": "Envelope de Teste",
+        "deadline_at": "",
+        "locale": "pt-BR",
+        "auto_close": true,
+        "remind_interval": "3",
+        "block_after_refusal": false,
+        "default_subject": "",
+        "default_message": "",
+        "deadline_partial_signature_action": "closed",
+        "name1": ""
+      },
+      "relationships": {
+        "folder": {
+          "data": {
+            "type": "folders",
+            "id": ""
+          }
+        }
+      }
+    },
+    "name": ""
+  }
+}
+
+docs {
+  Setup do envelope
+}

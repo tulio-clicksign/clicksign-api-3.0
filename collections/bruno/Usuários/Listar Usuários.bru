@@ -1,0 +1,19 @@
+meta {
+  name: Listar Usuários
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/users
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~filter[email]: 
+}
+
+docs {
+  Listar e consultar usuários
+}
