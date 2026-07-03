@@ -1,0 +1,15 @@
+meta {
+  name: Excluir Modelo
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{base_url}}/templates/{{template_id}}
+  body: none
+  auth: inherit
+}
+
+docs {
+  Referência para exclusão de um modelo.
+}

@@ -1,0 +1,28 @@
+meta {
+  name: Criar Usuário
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/users
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "attributes": {
+        "name": "Usuário Teste",
+        "email": "teste@example.com",
+        "phone_number": "11966666666"
+      },
+      "type": "users"
+    }
+  }
+}
+
+docs {
+  Cadastrar um novo usuário
+}

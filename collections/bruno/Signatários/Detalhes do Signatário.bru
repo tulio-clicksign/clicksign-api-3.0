@@ -1,0 +1,15 @@
+meta {
+  name: Detalhes do Signatário
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/envelopes/{{envelope_id}}/signers/{{signer_id}}
+  body: none
+  auth: inherit
+}
+
+docs {
+  Visualizar estado atual do Signatário.
+}

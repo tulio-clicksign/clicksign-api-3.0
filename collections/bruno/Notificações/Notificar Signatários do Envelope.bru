@@ -1,0 +1,38 @@
+meta {
+  name: Notificar Signatários do Envelope
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/envelopes/{{envelope_id}}/notifications
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "notifications",
+      "attributes": {
+        "message": "null",
+        "email_customization": {
+          "subject": "",
+          "head": "",
+          "greeting": "",
+          "principal": "",
+          "button": "",
+          "final": "",
+          "align": "left",
+          "show_token": false,
+          "show_qrcode": false,
+          "show_details": false
+        }
+      }
+    }
+  }
+}
+
+docs {
+  Notificar todos os Signatários de um Envelope.
+}

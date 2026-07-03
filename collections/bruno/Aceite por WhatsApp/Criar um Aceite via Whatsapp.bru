@@ -1,0 +1,30 @@
+meta {
+  name: Criar um Aceite via Whatsapp
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/acceptance_term/whatsapps
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "acceptance_term_whatsapps",
+      "attributes": {
+        "title": "",
+        "sender_name_option": "user_name",
+        "message": "",
+        "signer_phone": "",
+        "signer_name": ""
+      }
+    }
+  }
+}
+
+docs {
+  Criar um Aceite via Whatsapp
+}

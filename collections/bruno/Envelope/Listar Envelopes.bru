@@ -1,0 +1,24 @@
+meta {
+  name: Listar Envelopes
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/envelopes
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~filter[status]: 
+  ~filter[name]: 
+  ~filter[created]: 
+  ~filter[modified]: 
+  ~filter[deadline_at]: 
+  ~sort: 
+}
+
+docs {
+  Listar e consultar envelopes
+}

@@ -1,0 +1,45 @@
+meta {
+  name: Ativar e Editar Envelope
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{base_url}}/envelopes/{{envelope_id}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "id": "",
+      "type": "envelopes",
+      "attributes": {
+        "status": "draft",
+        "name": "",
+        "deadline_at": "",
+        "locale": "pt-BR",
+        "auto_close": true,
+        "remind_interval": "1",
+        "block_after_refusal": true,
+        "default_subject": "",
+        "default_message": "",
+        "deadline_partial_signature_action": "closed"
+      },
+      "relationships": {
+        "folder": {
+          "data": {
+            "type": "folders",
+            "id": ""
+          }
+        }
+      }
+    },
+    "name": ""
+  }
+}
+
+docs {
+  Ativar ou atualizar configurações de um envelope. <br> Para ativar um envelope na plataforma, cada signatário deve possuir pelo menos um critério de autenticação configurado.  Em caso de dúvidas recomendamos a leitura do <Anchor target="_blank" href="https://developers.clicksign.com/docs/guia-de-criacao-o-passo-a-passo-padrao">Guia de criação</Anchor>
+}

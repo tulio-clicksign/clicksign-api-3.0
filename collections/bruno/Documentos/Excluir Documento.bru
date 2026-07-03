@@ -1,0 +1,15 @@
+meta {
+  name: Excluir Documento
+  type: http
+  seq: 7
+}
+
+delete {
+  url: {{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}
+  body: none
+  auth: inherit
+}
+
+docs {
+  Excluir Documento que esteja com estado em rascunho (draft)
+}

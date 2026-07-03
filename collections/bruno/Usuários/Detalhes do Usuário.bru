@@ -1,0 +1,15 @@
+meta {
+  name: Detalhes do Usuário
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/users/{{user_id}}
+  body: none
+  auth: inherit
+}
+
+docs {
+  Consultar detalhes do usuário
+}

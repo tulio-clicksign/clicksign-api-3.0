@@ -1,0 +1,37 @@
+meta {
+  name: Criar termo de assinatura automática
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{base_url}}/auto_signature/terms
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/vnd.api+json
+}
+
+body:json {
+  {
+    "data": {
+      "type": "auto_signature_terms",
+      "attributes": {
+        "signer": {
+          "name": "Signer Name",
+          "email": "signer@example.com",
+          "documentation": "123.456.789-10",
+          "birthday": "1990-01-01"
+        },
+        "api_email": "api@example.com",
+        "admin_email": "admin@example.com"
+      }
+    }
+  }
+}
+
+docs {
+  Criar um termo de assinatura automática para um determinado signatário
+}

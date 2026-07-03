@@ -1,0 +1,33 @@
+meta {
+  name: Criar evento customizado para o documento
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}/events
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "events",
+      "attributes": {
+        "name": "custom",
+        "data": {
+          "kind": "token_email",
+          "occurred_at": "",
+          "signer_name": "",
+          "signer_email": "",
+          "signer_phone_number": ""
+        }
+      }
+    }
+  }
+}
+
+docs {
+  Adicionar um Evento Customizado de Token ao Documento.
+}

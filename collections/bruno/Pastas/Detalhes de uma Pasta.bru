@@ -1,0 +1,15 @@
+meta {
+  name: Detalhes de uma Pasta
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/folders/{{folder_id}}
+  body: none
+  auth: inherit
+}
+
+docs {
+  Listar subpastas de uma pasta
+}

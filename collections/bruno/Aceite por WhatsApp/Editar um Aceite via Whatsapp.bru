@@ -1,0 +1,27 @@
+meta {
+  name: Editar um Aceite via Whatsapp
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{base_url}}/acceptance_term/whatsapps/{{acceptance_term_id}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "id": "",
+      "type": "acceptance_term_whatsapps",
+      "attributes": {
+        "status": "canceled"
+      }
+    }
+  }
+}
+
+docs {
+  Editar um Aceite via Whatsapp
+}

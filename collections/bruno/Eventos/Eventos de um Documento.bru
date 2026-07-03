@@ -1,0 +1,19 @@
+meta {
+  name: Eventos de um Documento
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}/events
+  body: none
+  auth: inherit
+}
+
+params:query {
+  ~filter[name]: 
+}
+
+docs {
+  Listar eventos de um Documento do Envelope
+}

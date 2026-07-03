@@ -1,0 +1,15 @@
+meta {
+  name: Detalhes do Requisito
+  type: http
+  seq: 5
+}
+
+get {
+  url: {{base_url}}/envelopes/{{envelope_id}}/requirements/{{requirement_id}}
+  body: none
+  auth: inherit
+}
+
+docs {
+  Visualizar estado atual do Requisito.
+}

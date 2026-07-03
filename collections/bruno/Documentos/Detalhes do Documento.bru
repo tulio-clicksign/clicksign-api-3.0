@@ -1,0 +1,15 @@
+meta {
+  name: Detalhes do Documento
+  type: http
+  seq: 6
+}
+
+get {
+  url: {{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}
+  body: none
+  auth: inherit
+}
+
+docs {
+  Visualizar estado atual do Documento
+}

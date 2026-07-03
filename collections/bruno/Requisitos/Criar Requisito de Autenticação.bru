@@ -1,0 +1,41 @@
+meta {
+  name: Criar Requisito de Autenticação
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/envelopes/{{envelope_id}}/requirements
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "requirements",
+      "attributes": {
+        "action": "provide_evidence",
+        "auth": "email"
+      },
+      "relationships": {
+        "document": {
+          "data": {
+            "type": "documents",
+            "id": ""
+          }
+        },
+        "signer": {
+          "data": {
+            "type": "signers",
+            "id": ""
+          }
+        }
+      }
+    }
+  }
+}
+
+docs {
+  Criar Requisito de Autenticação, relacionando um signatário a um documento.<br>Em caso de falhas consulte a <Anchor target="_blank" href="https://developers.clicksign.com/docs/veja-como-funciona-na-pr%C3%A1tica">documentação teórica informando o passo a passo.</Anchor><br>Ainda ficou com dúvidas? <Anchor target="_blank" href="https://www.clicksign.com/suporte">Entre em contato com o suporte.</Anchor>
+}

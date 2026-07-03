@@ -1,0 +1,30 @@
+meta {
+  name: Editar Membro
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{base_url}}/memberships/{{membership_id}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "attributes": {
+        "role": "global",
+        "consumption_accessible": false,
+        "tracking_accessible": false,
+        "folder_management_accessible": "true"
+      },
+      "id": "",
+      "type": "memberships"
+    }
+  }
+}
+
+docs {
+  Editar Membro
+}

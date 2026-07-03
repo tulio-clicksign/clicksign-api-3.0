@@ -1,0 +1,15 @@
+meta {
+  name: Deletar Membro
+  type: http
+  seq: 4
+}
+
+delete {
+  url: {{base_url}}/memberships/{{membership_id}}
+  body: none
+  auth: inherit
+}
+
+docs {
+  Deletar Membro
+}

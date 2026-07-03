@@ -1,0 +1,30 @@
+meta {
+  name: Criar Webhook
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/webhooks
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "webhooks",
+      "attributes": {
+        "endpoint": "",
+        "status": "active",
+        "events": [
+          ""
+        ]
+      }
+    }
+  }
+}
+
+docs {
+  Adicionar um Webhook a sua conta.
+}

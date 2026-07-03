@@ -1,0 +1,15 @@
+meta {
+  name: Detalhes do Webhook
+  type: http
+  seq: 3
+}
+
+get {
+  url: {{base_url}}/webhooks/{{webhook_id}}
+  body: none
+  auth: inherit
+}
+
+docs {
+  Visualizar Webhook
+}

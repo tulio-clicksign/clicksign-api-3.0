@@ -1,0 +1,28 @@
+meta {
+  name: Criar Modelo
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/templates
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "templates",
+      "attributes": {
+        "name": "",
+        "content_base64": "",
+        "color": "#1474f5"
+      }
+    }
+  }
+}
+
+docs {
+  Referência para criação de modelos.
+}

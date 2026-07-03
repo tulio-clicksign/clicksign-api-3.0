@@ -1,0 +1,27 @@
+meta {
+  name: Editar Modelo
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{base_url}}/templates/{{template_id}}
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "templates",
+      "data": {
+        "name": "",
+        "color": "#1474f5"
+      }
+    }
+  }
+}
+
+docs {
+  Referência para atualização de modelos.
+}

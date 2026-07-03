@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Clicksign API v3 (Envelope)",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

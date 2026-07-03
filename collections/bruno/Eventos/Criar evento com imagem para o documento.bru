@@ -1,0 +1,31 @@
+meta {
+  name: Criar evento com imagem para o documento
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/envelopes/{{envelope_id}}/documents/{{document_id}}/events
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "events",
+      "attributes": {
+        "name": "add_image",
+        "content_base64": "",
+        "data": {
+          "occurred_at": "",
+          "title": ""
+        }
+      }
+    }
+  }
+}
+
+docs {
+  Adicionar um Evento de Imagem ao Documento.
+}

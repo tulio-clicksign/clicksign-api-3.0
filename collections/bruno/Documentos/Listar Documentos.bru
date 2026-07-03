@@ -1,0 +1,15 @@
+meta {
+  name: Listar Documentos
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/envelopes/{{envelope_id}}/documents
+  body: none
+  auth: inherit
+}
+
+docs {
+  Listar Documentos de um Envelope
+}

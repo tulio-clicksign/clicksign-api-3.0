@@ -1,0 +1,46 @@
+meta {
+  name: Criar Signatário
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/envelopes/{{envelope_id}}/signers
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "data": {
+      "type": "signers",
+      "attributes": {
+        "name": "",
+        "email": "",
+        "phone_number": "",
+        "birthday": "",
+        "has_documentation": true,
+        "documentation": "",
+        "refusable": "false",
+        "group": 1,
+        "location_required_enabled": false,
+        "communicate_events": {
+          "signature_request": "email",
+          "signature_reminder": "email",
+          "document_signed": "email"
+        },
+        "signature_host": {
+          "name": "",
+          "email": "",
+          "communicate_events": {
+            "signature_host_signature_request": "none"
+          }
+        }
+      }
+    }
+  }
+}
+
+docs {
+  Adicionar um Signatário ao Envelope.
+}
